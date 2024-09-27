@@ -31,37 +31,37 @@ if (chatData.length > 0) {
         7. Keep the response between 200 to 400 characters for conciseness and clarity."
     `;
 }
-    // Case when no chat history exists
-    else {
-        promptData = 
-            "Create a concise and personalized LinkedIn message to initiate outreach, based on the recipient's profile details and the campaign objective.
+// Case when no chat history exists
+else {
+    promptData = 
+        "Create a concise and personalized LinkedIn message to initiate outreach, based on the recipient's profile details and the campaign objective.
 
-            Inputs:
+        Inputs:
 
-            Sales Team Profile:
-            - Andy (Ashish) M.🌏 (Sales representative’s profile details)
+        Sales Team Profile:
+        - Andy (Ashish) M.🌏 (Sales representative’s profile details)
 
-            Potential Customer Profile:
-            - Name: ${profileData.name}
-            - Professional Description: ${profileData.description}
-            - About: ${profileData.about}
-            - Experience (Years): ${profileData.countedExperience}
+        Potential Customer Profile:
+        - Name: ${profileData.name}
+        - Professional Description: ${profileData.description}
+        - About: ${profileData.about}
+        - Experience (Years): ${profileData.countedExperience}
 
-            Campaign Details:
-            - Objective: ${campaign.objective}
-            - Value Proposition: ${campaign.valuable}
+        Campaign Details:
+        - Objective: ${campaign.objective}
+        - Value Proposition: ${campaign.valuable}
 
-            Chat History: No previous chat history
+        Chat History: No previous chat history
 
-            Instructions:
+        Instructions:
 
-            1. Personalize the greeting using the individual's profile and work experience.
-            2. Briefly explain the purpose of the outreach and align it with their background.
-            3. Highlight the value your company brings to their work.
-            4. Include a call to action, such as suggesting a meeting or requesting feedback.
-            5. Keep the message between 200 to 400 characters, without a sign-off."
-        ;
-    }
+        1. Personalize the greeting using the individual's profile and work experience.
+        2. Briefly explain the purpose of the outreach and align it with their background.
+        3. Highlight the value your company brings to their work.
+        4. Include a call to action, such as suggesting a meeting or requesting feedback.
+        5. Keep the message between 200 to 400 characters, without a sign-off."
+    ;
+}
 
-    return promptData.replace(/\s+/g, ' ').trim();
+return promptData.replace(/\s+/g, ' ').trim();
 }
