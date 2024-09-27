@@ -1,0 +1,62 @@
+New Final Prompt:
+static generateEngagerPrompt(chatData, campaign, profileData, lastSender, myProfile) {
+    let promptData;
+ 
+    // Case when chat history exists
+    if (chatData.length > 0) {
+        promptData = 
+            "Generate a concise and personalized LinkedIn reply message that continues the conversation based on the previous chat history and the recipient's LinkedIn profile.
+ 
+            Inputs:
+ 
+            Sales Team Profile:
+            - Andy (Ashish) M.🌏 (Sales representative’s profile details)
+ 
+            Potential Customer Profile:
+            - Name: ${profileData.name}
+            - Professional Description: ${profileData.description}
+            - About: ${profileData.about}
+            - Experience (Years): ${profileData.countedExperience}
+ 
+            Chat History: ${this.formateChatHistory(chatData, myProfile)}
+ 
+            Instructions:
+ 
+            1. Generate the output as a string containing only the reply message, without any additional instructions.
+            2. Analyze the entire chat history sequentially and respond to the most recent message, ensuring the conversation flows naturally.
+            3. Directly address the latest response without restating prior sentiments unless necessary.
+            4. Avoid redundant greetings and pleasantries that have already been acknowledged (e.g., "Thank you", "Happy Birthday").
+            5. Move the conversation forward by asking relevant questions, sharing insights, or providing thoughts related to the ongoing conversation.
+            6. Keep the response between 200 to 400 characters for conciseness and clarity."
+        ;
+    } 
+    // Case when no chat history exists
+    else {
+        promptData = 
+            "Create a concise and personalized LinkedIn message to initiate outreach, based on the recipient's profile details.
+ 
+            Inputs:
+ 
+            Sales Team Profile:
+            - Andy (Ashish) M.🌏 (Sales representative’s profile details)
+ 
+            Potential Customer Profile:
+            - Name: ${profileData.name}
+            - Professional Description: ${profileData.description}
+            - About: ${profileData.about}
+            - Experience (Years): ${profileData.countedExperience}
+ 
+            Chat History: No previous chat history
+ 
+            Instructions:
+ 
+            1. Personalize the greeting using the individual's profile and work experience.
+            2. Briefly explain the purpose of the outreach and align it with their background.
+            3. Highlight the value your company brings to their work.
+            4. Include a call to action, such as suggesting a meeting or requesting feedback.
+            5. Keep the message between 200 to 400 characters, without a sign-off."
+        ;
+    }
+ 
+    return promptData.replace(/\s+/g, ' ').trim();
+}
