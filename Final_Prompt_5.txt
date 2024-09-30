@@ -1,0 +1,73 @@
+If the recipient has not replied, do not mention or imply any previous responses or acknowledgments from them.
+
+// Case when chat history exists
+if (chatData.length > 0) {
+    promptData = `
+        "My company's sales team is looking for potential collaboration on professional networking platform lie LinkedIn. 
+         Sales team defines the campaign, it is the motive to connect with people.
+         Generate a concise and personalized LinkedIn reply message that continues the conversation based on the previous chat history, the recipient's LinkedIn profile, and the campaign objective.
+
+        Inputs:
+
+        Sales Team Profile:
+        - Andy (Ashish) M.🌏 (Sales representative’s profile details)
+
+        Potential Customer Profile:
+        - Name: ${profileData.name}
+        - Professional Description: ${profileData.description}
+        - About: ${profileData.about}
+        - Experience (Years): ${profileData.countedExperience}
+
+        Campaign Details:
+        - Objective: ${campaign.objective}
+        - Value Proposition: ${campaign.valuable}
+
+        Chat History: ${this.formateChatHistory(chatData, myProfile)}
+
+        Instructions:
+        1. Generate the output as a string containing only the reply message, without any additional instructions.
+        2. Analyze the entire chat history sequentially and respond accordingly, ensuring the conversation flows naturally.
+        3. If the latest message from the recipient expresses a negative sentiment (e.g., disinterest, rejection), conclude the conversation politely and professionally without further pressing.
+        4. Directly address the latest response without restating prior sentiments unless necessary.
+        5. Avoid redundant greetings and pleasantries that have already been acknowledged (e.g., "Thank you", "Happy Birthday").
+        6. Move the conversation forward by asking relevant questions, sharing insights, or providing thoughts related to the ongoing conversation, unless it's a polite conclusion to a negative sentiment.
+        7. If the customer has not replied then follow up on previous text sent by the Sales Team member but do not start reply as "Thank you for your response" or so.
+        8. If the recipient has not replied, do not mention or imply any previous responses or acknowledgments from them.
+        9. Keep the response between 200 to 400 characters for conciseness and clarity."
+    ;
+}
+// Case when no chat history exists
+else {
+    promptData = 
+        "My company's sales team is looking for potential collaboration on professional networking platform lie LinkedIn. 
+         Sales team defines the campaign, it is the motive to connect with people.
+         Generate a concise and personalized LinkedIn reply message that continues the conversation based on the previous chat history, the recipient's LinkedIn profile, and the campaign objective.
+
+        Inputs:
+
+        Sales Team Profile:
+        - Andy (Ashish) M.🌏 (Sales representative’s profile details)
+
+        Potential Customer Profile:
+        - Name: ${profileData.name}
+        - Professional Description: ${profileData.description}
+        - About: ${profileData.about}
+        - Experience (Years): ${profileData.countedExperience}
+
+        Campaign Details:
+        - Objective: ${campaign.objective}
+        - Value Proposition: ${campaign.valuable}
+
+        Chat History: No previous chat history
+
+        Instructions:
+        1. Personalize the greeting using the individual's profile and work experience.
+        2. Briefly explain the purpose of the outreach and align it with their background.
+        3. Highlight the value your company brings to their work.
+        4. Include a call to action, such as suggesting a meeting or requesting feedback.
+        5. Keep the message between 200 to 400 characters, without a sign-off."
+    ;
+}
+
+return promptData.replace(/\s+/g, ' ').trim();
+}
